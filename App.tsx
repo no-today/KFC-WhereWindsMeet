@@ -49,14 +49,14 @@ const App: React.FC = () => {
           </h1>
           <div className="flex items-center justify-center gap-4 text-2xl md:text-3xl font-serif italic text-gray-400">
             <span className="h-px w-12 bg-gray-600"></span>
-            <span>疯狂星期四文案生成</span>
+            <span>Crazy Thursday</span>
             <span className="h-px w-12 bg-gray-600"></span>
           </div>
         </header>
 
         {/* Controls */}
         <div className="w-full max-w-2xl bg-yanyun-ink/80 backdrop-blur-md p-8 rounded-sm border border-white/10 shadow-xl animate-fade-in" style={{animationDelay: '0.2s'}}>
-          
+
           {/* Tone Selection */}
           <div className="mb-8">
             <label className="block text-yanyun-gold text-sm font-bold mb-3 tracking-wider">
@@ -95,9 +95,9 @@ const App: React.FC = () => {
 
           {/* Action */}
           <div className="text-center">
-            <InkButton 
-              onClick={handleGenerate} 
-              isLoading={loading} 
+            <InkButton
+              onClick={handleGenerate}
+              isLoading={loading}
               className={`w-full md:w-auto md:min-w-[200px] ${generateSuccess ? 'animate-success-bump' : ''}`}
             >
               生成文案
@@ -114,7 +114,7 @@ const App: React.FC = () => {
 
         {/* Results */}
         {result && <ResultCard result={result} />}
-        
+
         <footer className="mt-20 text-gray-600 text-xs tracking-widest">
             POWERED BY GEMINI 2.5 · YANYUN FAN TOOL
         </footer>
