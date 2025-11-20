@@ -13,6 +13,13 @@ export const generateCrazyThursdayCopy = async (params: GenerateParams): Promise
     [ToneType.HUMOROUS]: "笔触如市井泼皮，看似正经实则荒诞。",
   };
 
+  // Generate a random scenario hint to force diversity
+  const scenarios = [
+    "荒漠中的最后一家客栈", "满是尸体的古战场", "繁华汴京的阴暗巷弄", "大雨滂沱的破败山神庙",
+    "权贵奢宴的屋顶", "充满瘴气的西南密林", "冰封千里的北境", "深夜无人的渡口", "断崖边的枯树下", "废弃的官驿"
+  ];
+  const randomScenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+
   const prompt = `
     你是一位浪迹于五代十国乱世的无名刀客，见惯了《燕云十六声》背景下家国破碎、烽火连天的惨状。
     
@@ -30,7 +37,8 @@ export const generateCrazyThursdayCopy = async (params: GenerateParams): Promise
        - 前90%是极度压抑、肃杀的武侠氛围，让人感受到生存的艰难。
        - 最后一句突然转折，因为太饿了，需要钱去吃肯德基疯狂星期四。
     5. **关键词融入**：${keywords || '残刀, 骤雨, 宿命'}。
-    6. **风格设定**：${tonePromptMap[tone]}
+    6. **风格设定**：${tonePromptMap[tone]}。
+    7. **场景随机性**：请将故事背景设定在“${randomScenario}”，并确保与以往生成的文案完全不同，拒绝套路。
     
     输出格式要求：
     请返回JSON格式，包含两个字段：
@@ -52,7 +60,10 @@ export const generateCrazyThursdayCopy = async (params: GenerateParams): Promise
           },
           required: ["title", "content"],
         },
-        temperature: 0.9, // Keep high for creativity
+        temperature: 1.4, // Increased for high creativity/randomness
+        topP: 0.95,
+        topK: 64,
+        seed: Math.floor(Math.random() * 10000000), // Add random seed to ensure variations
       },
     });
 
