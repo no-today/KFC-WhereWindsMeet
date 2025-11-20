@@ -6,7 +6,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 export const generateCrazyThursdayCopy = async (params: GenerateParams): Promise<CopyResult> => {
   const { tone, keywords } = params;
 
-  const background = `
+  const backgroundPlot = `
     燕云十六声——剧情梗概及世界观
 
     故事背景与世界观
@@ -43,6 +43,16 @@ export const generateCrazyThursdayCopy = async (params: GenerateParams): Promise
     《燕云十六声》的剧情交织着家国与民族的宏大主题。五代十国的“燕云十六州”本是北宋与契丹交锋的边疆地区 ￼。游戏中，契丹势力通过暗线（如田英刺使事）与汉人政权冲突不止 ￼；南北对峙的阴影下，小国或门派各怀异志。主人公所在的宋朝势力（以“强宋有我”为代表 ￼）象征着统一与家国情怀，而对立的后周余力或契丹爪牙则代表旧秩序与割据。玩家在青河之战后亲历的村落倘徉、武学传承和对敌进攻，都反映了民族冲突的历史浪潮 ￼ ￼。在开封，百姓视角的“一叶平生”剧情以“金叶子”之秘揭示民间历史观 ￼，而庙堂上的决策则牵动整个王朝的存亡。无论是潇洒逍遥的侠客，还是忠勇爱国的志士，亦或是布衣江湖的隐士，他们各自的选择与命运最终都指向“家国”这一命题。通过各方势力的对抗与人物抉择，游戏向玩家呈现了一个动荡时代的全景：个人情怀与大义宏愿共存，在千年的历史洪流中铸造属于自己的侠义传奇 ￼ ￼。
   `;
 
+  const referenceCase = `
+    今天是2025年7月3日，是2025年的第183天，是2025年刚好过了一半的日子。从今天开始，比起2000年，我们更接近2050年。我们站在历史的对称轴上，左手是拨号上网的童年，右手是脑机接口的未来。这是时间的更迭，文明的跃迁。如此重要的日子，应当以最庄重的方式纪念。恰逢肯德基疯狂星期四，谁v我50？让我买个黄金脆皮鸡，在咀嚼酥脆的瞬间，感受时光的流逝，顺便思考下炸鸡技术在2000-2025这1/4世纪里的进化史。
+    
+    怀孕三个月老公暴露本性对我进行家暴，恶婆婆对我冷嘲热讽。闺蜜背叛我跟老公勾搭上，我的忍让换来的只有得寸进尺，我决定不再忍下去!只需要微我五十即可聆听我的复仇计划!
+    
+    同事欺我，老板骂我，顾客打我，我流浪在街头，衣衫褴褛，身无分文，活的不如一条狗。天地浩大，却没有我的容身之处。我想问一问苍天，今天的肯德基疯狂星期四，谁请我吃!
+    
+    老大，我们每周四这样装傻充愣的复制粘贴，真的能吃到肯德基吗？
+  `
+
   const tonePromptMap: Record<ToneType, string> = {
     [ToneType.HEROIC]: "笔触硬朗，如刀劈斧凿。重在侠义与决绝。",
     [ToneType.MELANCHOLIC]: "笔触苍凉，如晚秋冷雨。重在孤独与漂泊。",
@@ -52,7 +62,11 @@ export const generateCrazyThursdayCopy = async (params: GenerateParams): Promise
 
   // Generate a random scenario hint to force diversity
   const prompt = `
-    背景预设：${background}
+    背景预设：${backgroundPlot}
+    
+    --------------------------------
+    
+    参考范文：${referenceCase}
     
     --------------------------------
     
@@ -65,7 +79,7 @@ export const generateCrazyThursdayCopy = async (params: GenerateParams): Promise
     2. **字数限制**：全文字数严格控制在50-200字之间。
     3. **内容禁忌**：正文中**绝不出现**“燕云十六声”游戏名。
     4. **极度反转**：
-       - 最后突然转折，V我50，肯德基疯狂星期四。
+       - 最后突然转折，V我50，肯德基疯狂星期四。(且听我如何复仇
     5. **关键词融入**：${keywords || '随机生成'}。
     6. **风格设定**：${tonePromptMap[tone]}。
     
