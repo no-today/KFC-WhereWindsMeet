@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   define: {
-    'process.env': process.env
+    // This ensures the API key from Cloudflare env vars is embedded into the build
+    'process.env.API_KEY': JSON.stringify(process.env.API_KEY)
   }
 })

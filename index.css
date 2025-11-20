@@ -1,0 +1,25 @@
+/* 
+  Note: In CDN mode, Tailwind directives are not processed. 
+  We rely on the script in index.html for utility classes.
+  This file contains only standard CSS overrides.
+*/
+
+body {
+  background-color: #0a0a0a;
+  background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1c1c1c; 
+}
+::-webkit-scrollbar-thumb {
+  background: #4a4a4a; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cca46a; 
+}
