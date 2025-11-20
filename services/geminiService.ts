@@ -79,7 +79,8 @@ export const generateCrazyThursdayCopy = async (params: GenerateParams): Promise
     2. **字数限制**：全文字数严格控制在50-200字之间。
     3. **内容禁忌**：正文中**绝不出现**“燕云十六声”游戏名。
     4. **极度反转**：
-       - 最后突然转折，V我50，肯德基疯狂星期四。(且听我如何复仇
+       - 最后突然转折，V我50，肯德基疯狂星期四。
+       - 复仇场景加一句：且听我如何复仇
     5. **关键词融入**：${keywords || '随机生成'}。
     6. **风格设定**：${tonePromptMap[tone]}。
     
